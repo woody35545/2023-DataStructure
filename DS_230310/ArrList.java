@@ -56,4 +56,11 @@ public class ArrList<E> {
     private boolean isOverflow(){
         return this.size == this.data.length;
     }
+
+    public void print(){
+        for (E item : this.data){
+            System.out.print(item + " ");
+        }
+        System.out.println("");
+    }
 }
