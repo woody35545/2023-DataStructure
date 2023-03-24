@@ -11,7 +11,9 @@ public class SListApplication {
         System.out.println(mySList.search("A"));
         mySList.deleteFront();
         mySList.print();
-        mySList.insertAfter("D",mySList.head);
+        //mySList.insertAfter("D",mySList.head);
+        mySList.deleteAfter(mySList.head);
+
         mySList.print();
 
         /*

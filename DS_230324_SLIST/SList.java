@@ -52,8 +52,13 @@ public class SList<E> implements List<E>{
     }
 
     @Override
-    public void deleteAfter(Node p) {
+    public void deleteAfter(Node pNode){
+        Node pNodeNext = pNode.getNext();
+        pNode.setNext(pNodeNext.getNext());
+        //pNodeNext.setNext(null);
 
+        //update size
+        this.size--;
     }
 
     public void print(){
