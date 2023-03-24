@@ -33,15 +33,21 @@ public class SList<E> implements List<E>{
     }
 
     @Override
-    public void insertAfter(E newItem, Node p) {
+    public void insertAfter(E newItem, Node pNode) {
+        // update link
+        pNode.setNext(new Node(newItem, pNode.getNext()));
 
+        // update size
+        this.size ++;
     }
+
 
     @Override
     public void deleteFront() {
         if (this.size == 0) throw new NoSuchElementException();
         // update head <- head.getNext()
         this.head = this.head.getNext();
+        // update size
         this.size --;
     }
 
