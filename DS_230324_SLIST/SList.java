@@ -1,5 +1,7 @@
 package DS_230324_SLIST;
 
+import java.util.NoSuchElementException;
+
 public class SList<E> implements List<E>{
     protected Node<E> head;
     private int size;
@@ -37,7 +39,10 @@ public class SList<E> implements List<E>{
 
     @Override
     public void deleteFront() {
-
+        if (this.size == 0) throw new NoSuchElementException();
+        // update head <- head.getNext()
+        this.head = this.head.getNext();
+        this.size --;
     }
 
     @Override

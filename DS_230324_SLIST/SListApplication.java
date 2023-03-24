@@ -9,6 +9,14 @@ public class SListApplication {
         mySList.insertFront("C");
         mySList.print();
         System.out.println(mySList.search("A"));
+        mySList.deleteFront();
+        mySList.print();
+
+        /*
+            SList 하고 CircularList 두 개 제출
+            따로 따로 프로젝트 만들어서 압축해서 제출
+         */
+
     }
 
 }
