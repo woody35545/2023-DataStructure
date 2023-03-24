@@ -1,5 +1,7 @@
-public class main {
-    public static void main(String[] args){
+package DS_230310_ARRLIST;
+
+public class ArrListApplication {
+    public static void ArrListApplication(String[] args){
         ArrList<String> stringArrList = new ArrList<String>();
         stringArrList.insertLast("apple"); stringArrList.print();
         stringArrList.insertLast("orange");stringArrList.print();
