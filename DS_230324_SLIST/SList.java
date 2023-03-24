@@ -12,13 +12,20 @@ public class SList<E> implements List<E>{
 
     @Override
     public int search(E target) {
-        return 0;
+        Node<E> currentNode = this.head;
+        for (int i=0; i<this.size; i++){
+            // check if it's target
+            if (currentNode.getItem() == target) return i;
+            // move to next node
+            currentNode = currentNode.getNext();
+        }
+        // return -1, if not found
+        return -1;
     }
 
     @Override
     public void insertFront(E newItem) {
         Node<E> insertedNode = new Node<E>(newItem, this.head);
-        System.out.println("Node Added");
         this.head = insertedNode;
         this.size ++;
     }
