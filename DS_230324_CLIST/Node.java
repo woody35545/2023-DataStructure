@@ -1,4 +1,4 @@
-package DS_230324_SLIST;
+package DS_230324_CLIST;
 
 public class Node<E>{
     private E item;
@@ -7,10 +7,6 @@ public class Node<E>{
     public Node(E item, Node<E> next) {
         this.item = item;
         this.next = next;
-    }
-    public Node(E item) {
-        this.item = item;
-        this.next = null;
     }
 
     public E getItem() {
