@@ -74,4 +74,19 @@ public class SList<E> implements List<E>{
         System.out.println("");
     }
 
+    public Node<E> getHead() {
+        return head;
+    }
+
+    public void setHead(Node<E> head) {
+        this.head = head;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

@@ -3,24 +3,32 @@ package DS_230324_SLIST;
 public class SListApplication {
 
     public static void main(String[] args){
-        SList<String> mySList = new SList<>();
-        mySList.insertFront("A");
-        mySList.insertFront("B");
-        mySList.insertFront("C");
-        mySList.print();
-        System.out.println(mySList.search("A"));
-        mySList.deleteFront();
-        mySList.print();
-        //mySList.insertAfter("D",mySList.head);
-        mySList.deleteAfter(mySList.head);
+        SList<String> s= new SList<>();
+        s.insertFront("orange"); s.insertFront("apple");
+        s.insertAfter("cherry",s.head.getNext());
+        s.insertFront("pear");
 
-        mySList.print();
+        s.print();
 
-        /*
-            SList 하고 CircularList 두 개 제출
-            따로 따로 프로젝트 만들어서 압축해서 제출
-         */
-        // 링크드리스트에서 인덱스로 가져오려면 어떻게 해야할지 생각해보기
+        System.out.println(": s의 길이="+s.size()+"\n");
+        System.out.println("체리가 \t" +s.search("cherry")+"번째에 있다.");
+        System.out.println("키위가 \t" +s.search("kiwi")+"번째에 있다.\n");
+
+        s.deleteAfter(s.head);
+        s.print();
+        System.out.println(": s의 길이="+s.size()); System.out.println();
+        s.deleteFront();
+        s.print();
+        System.out.println(": s의 길이="+s.size()); System.out.println();
+
+        SList<Integer> t= new SList<>();
+        t.insertFront(500); t.insertFront(200);
+        t.insertAfter(400,t.head);
+        t.insertFront(100);
+        t.insertAfter(300,t.head.getNext());
+        t.print();
+        System.out.println(": t의 길이 = " + t.size());
+
     }
 
 }

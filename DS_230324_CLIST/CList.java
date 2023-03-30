@@ -6,6 +6,14 @@ public class CList<E>{
     private Node last;
     private int size;
 
+    public void setLast(Node last) {
+        this.last = last;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public CList() {
         this.last = null;
         this.size = 0;
@@ -32,7 +40,7 @@ public class CList<E>{
             size--;
         }
         else{
-            System.out.printf("[!] List is Empty!");
+            System.out.printf("[!] List is empty!\n");
         }
     }
 
@@ -44,14 +52,20 @@ public class CList<E>{
 
     public void print(){
         Node<E> currentNode= this.last.getNext();
-
         for(int i=0; i<this.size; i++){
             System.out.print(currentNode.getItem());
-
             if(i < this.size-1) System.out.print(" -> ");
-
             currentNode = currentNode.getNext();
         }
         System.out.println("");
     }
+
+    public Node getLast() {
+        return last;
+    }
+
+    public int size() {
+        return size;
+    }
+
 }
