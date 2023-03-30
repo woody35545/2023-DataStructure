@@ -4,7 +4,7 @@
     - 학번: 201701975
     - 이름: 구건모
  */
-
+package DS_230317_HANOI;
 public class Hanoi {
 
     public static void move(int disk, char start, char end, char middle)
