@@ -1,7 +1,5 @@
 package DS_230331_STACK;
 
-import java.util.EmptyStackException;
-
 public class ArrayStack<E> implements Stack<E> {
     private E[] storage;
     private int top;
@@ -13,7 +11,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public void push(E element) {
-        if (resizalbe()) resize();
+        if (resizeable()) resize();
         this.top++;
 
         this.storage[this.top] = element;
@@ -23,7 +21,7 @@ public class ArrayStack<E> implements Stack<E> {
     public E pop() {
 //        if (isEmpty()) throw new EmptyStackException();
         if(isEmpty()) {
-            System.out.println("[!] pop failed, Empty Stack!");
+            System.out.println("[!] pop() failed(empty stack)");
             return null;
         }
         else {
@@ -37,7 +35,7 @@ public class ArrayStack<E> implements Stack<E> {
     public E peek() {
         //if (isEmpty()) throw new EmptyStackException();
         if(isEmpty()) {
-            System.out.println("[!] peek failed, Empty Stack!");
+            System.out.println("[!] peek() failed(empty stack)");
             return null;
         }
 
@@ -47,7 +45,7 @@ public class ArrayStack<E> implements Stack<E> {
         return this.size()==0;
     }
 
-    public boolean resizalbe(){
+    public boolean resizeable(){
         return (this.size() == this.capacity()) || (this.size() > 0 && this.size()==this.storage.length/4);
     }
 
