@@ -87,9 +87,9 @@ public class ArrayQueue<E> implements Queue<E> {
         System.out.println("");
 
     }
-    public void debugPrint(String ){
+    public void debugPrint(String msg){
         if (DEBUG_MODE){
-            System.out.println("");
+            System.out.println(msg);
         }
     }
     public void debugStorage(){
