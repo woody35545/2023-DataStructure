@@ -48,7 +48,7 @@ public class TreeApplication {
         BinaryTree t = new BinaryTree();  // 이진 트리 객체 t 생성
         t.setRoot(n1);                                      // t의 루트를 n1로
 
-        System.out.print("트리 노드 수  = "+ t.size(t.getRoot())+"\n트리 높이      = "+ t.height(t.getRoot()));
+        System.out.print("트리 노드 수 = "+ t.size(t.getRoot())+"\n트리 높이 = "+ t.height(t.getRoot()));
         System.out.printf("\n전위 순회:  ");
         t.preorder(t.getRoot());
         System.out.printf("\n중위 순회:  ");
@@ -56,7 +56,7 @@ public class TreeApplication {
         System.out.printf("\n후위 순회:  ");
         t.postorder(t.getRoot());
         System.out.printf("\n레벨 순회:  ");
-        //t.levelorder(t3.copy(t.getRoot()));
+        t.levelorder(t.getRoot());
         System.out.println();
 
         // 두번째 이진 트리를 만들어 isEqual() 테스트하기 위해
@@ -80,8 +80,7 @@ public class TreeApplication {
         System.out.println();
 
         BinaryTree t3 = new BinaryTree();
-        t3.setRoot((t.getRoot()));
-        t3.preorder(t3.getRoot());
+        t3.setRoot(t3.copy(t.getRoot()));
         System.out.printf("copy 테스트: "+BinaryTree.isEqual(t.getRoot(), t3.getRoot()));
         System.out.println();
     }

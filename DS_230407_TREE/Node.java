@@ -12,6 +12,9 @@ public class Node<Key extends Comparable<Key>> {
         this.right = right;
     }
 
+    public Node() {
+    }
+
     public Key getKey() {
         return item;
     }

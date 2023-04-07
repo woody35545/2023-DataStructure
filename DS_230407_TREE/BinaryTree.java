@@ -76,10 +76,9 @@ public class BinaryTree<Key extends  Comparable<Key>> {
         Queue<Node> q =new LinkedList<Node>();
         Node t;
         q.add(root);
-        q.add(root);
         while(!q.isEmpty()){
             t=q.remove();
-            System.out.println(t.getKey() + " ");
+            System.out.print(t.getKey() + " ");
             if(t.getLeft() != null)
                 q.add(t.getLeft());
             if(t.getRight() != null)
@@ -88,8 +87,20 @@ public class BinaryTree<Key extends  Comparable<Key>> {
 
     }
 
-    public void copy(Node root){
+    public Node copy(Node node) {
 
+        if(node != null)
+        {
+            Node copied = new Node();
+            copied.setKey(node.getKey());
+            copied.setLeft(copy(node.getLeft()));
+            copied.setRight(copy(node.getRight()));
+            return copied;
+
+        }
+        return null;
     }
+
+
 
 }
