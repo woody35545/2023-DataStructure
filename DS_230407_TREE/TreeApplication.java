@@ -42,11 +42,11 @@ public class TreeApplication {
         Node n8 = new Node(800,null,null);
 
         n1.setLeft(n2); n1.setRight(n3);
-        n2.setLeft(n4);    n2.setRight(n5);
-        n3.setLeft(n6);    n3.setRight(n7);
+        n2.setLeft(n4); n2.setRight(n5);
+        n3.setLeft(n6); n3.setRight(n7);
         n4.setLeft(n8);
-        BinaryTree t = new BinaryTree();  // 이진 트리 객체 t 생성
-        t.setRoot(n1);                                      // t의 루트를 n1로
+        BinaryTree t = new BinaryTree();
+        t.setRoot(n1);
 
         System.out.print("트리 노드 수 = "+ t.size(t.getRoot())+"\n트리 높이 = "+ t.height(t.getRoot()));
         System.out.printf("\n전위 순회:  ");
@@ -73,6 +73,8 @@ public class TreeApplication {
         n20.setLeft(n40); n20.setRight(n50);
         n30.setLeft(n60); n30.setRight(n70);
         n40.setLeft(n80);
+
+
         BinaryTree t2 = new BinaryTree();
         t2.setRoot(n10);
 
