@@ -15,5 +15,10 @@ public class ArrayQueueApplication {
         q.add("kiwi"); q.print();
         q.remove(); q.print();
         */
+        ArrayQueue<String> queue = new ArrayQueue<>();
+        queue.add("A");
+        queue.add("B");
+        queue.add("C");
+
     }
 }
