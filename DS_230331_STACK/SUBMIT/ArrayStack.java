@@ -68,7 +68,6 @@ public class ArrayStack<E> implements Stack<E> {
         for (int i=0; i<this.size(); i++){
 
             System.out.print(this.storage[i] + " ");
-            //if(i== this.size()-1) System.out.print("<--top");
 
         }
         System.out.println("");
