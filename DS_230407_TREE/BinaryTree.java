@@ -19,4 +19,12 @@ public class BinaryTree<Key extends  Comparable<Key>> {
         this.root = root;
     }
 
+    public void preorder(Node node) {
+        if (node != null) {
+            System.out.print(node.getItem() + " ");
+            this.preorder(node.getLeft());
+            this.preorder(node.getRight());
+        }
+    }
+
 }
