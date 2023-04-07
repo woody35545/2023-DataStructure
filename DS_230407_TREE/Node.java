@@ -12,11 +12,11 @@ public class Node<Key extends Comparable<Key>> {
         this.right = right;
     }
 
-    public Key getItem() {
+    public Key getKey() {
         return item;
     }
 
-    public void setItem(Key item) {
+    public void setKey(Key item) {
         this.item = item;
     }
 
