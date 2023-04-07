@@ -1,6 +1,6 @@
 package DS_230331_QUEUE.SUBMIT;
 
-import DS_230331_QUEUE.Queue;
+import DS_230331_QUEUE.SUBMIT.Queue;
 
 import java.util.NoSuchElementException;
 
