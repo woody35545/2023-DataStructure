@@ -2,7 +2,7 @@ package DS_230331_QUEUE;
 
 public class ArrayQueue<E> implements Queue<E> {
 
-    public static final boolean DEBUG_MODE = false;
+    public static final boolean DEBUG_MODE = true;
 
     private E[] storage;
     private int front,rear,size;
@@ -16,12 +16,12 @@ public class ArrayQueue<E> implements Queue<E> {
     }
     @Override
     public void add(E element) {
-
-        //if (resizeable()) resize();
+        if(resizeable()) resize();
         this.rear = (this.rear+1)%(this.storage.length);
         this.storage[this.rear] = element;
         this.size++;
-        this.debugStorage();
+//        this.debugStorage();
+        this.debugStatus();
 
     }
 
@@ -50,16 +50,20 @@ public class ArrayQueue<E> implements Queue<E> {
     public void resize() {
         int newSize = 0;
 
-        // initialize new size
-        if (isFull()) newSize = this.size * 2;
+        // initialize new storage capacity
+        if (isFull()) newSize = this.storage.length * 2;
         else if(this.size>0 && this.size == this.storage.length/4) {
             newSize = this.storage.length/2;
         }
+
+        System.out.println("this.storage.length: " + this.storage.length);
+        System.out.println("newSize: " + newSize+"\n");
 
         E[] newStorage = (E[])new Object[newSize];
         for(int i=1,j=front+1; i<size+1; i++, j++){
             newStorage[i] = this.storage[j%this.storage.length];
         }
+
         this.size = newSize;
 
         this.front=0;
@@ -77,6 +81,8 @@ public class ArrayQueue<E> implements Queue<E> {
     }
 
     public boolean resizeable(){
+
+        debugPrint("> resizeable: " + Boolean.toString(isFull() || this.size>0 && this.size == this.storage.length/4) );
         return isFull() || this.size>0 && this.size == this.storage.length/4;
     }
 
@@ -101,6 +107,22 @@ public class ArrayQueue<E> implements Queue<E> {
             System.out.println("");
 
         }
+    }
+
+    public void debugStatus(){
+        if (!DEBUG_MODE) return ;
+        System.out.println("------- STATUS -------");
+        System.out.println("::: * front: " + this.front);
+        System.out.println("::: * rear: " + this.rear);
+        System.out.println("::: storage.legnth: " + this.storage.length);
+        System.out.print("::: storage: ");
+        for (int i=0; i<this.storage.length; i++){
+            if (storage[i] == null)  System.out.print("[" + i + "] \uD835\uDF19. ");
+
+            else
+            System.out.print("[" + i + "] "+ storage[i] + ". ");
+        }
+        System.out.println("\n");
     }
     public E[] getStorage() {
         return storage;
