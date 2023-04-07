@@ -1,4 +1,8 @@
-package DS_230331_QUEUE;
+package DS_230331_QUEUE.SUBMIT;
+
+import DS_230331_QUEUE.Queue;
+
+import java.util.NoSuchElementException;
 
 public class ArrayQueue<E> implements Queue<E> {
 
@@ -16,38 +20,24 @@ public class ArrayQueue<E> implements Queue<E> {
     }
     @Override
     public void add(E element) {
-        debugPrint("\n$ queue.enqueue(" + element.toString() +")");
         if(resizeable()) resize();
         this.rear = (this.rear+1)%(this.storage.length);
         this.storage[this.rear] = element;
         this.size++;
-//        this.debugStorage();
-        this.debugStatus();
-
     }
 
     @Override
     public E remove() {
-        debugPrint("\n$ queue.remove()");
 
-        if (this.isEmpty()) {
-            System.out.println("[!] remove() failed(empty queue)");
-            this.debugStatus();
+        if (this.isEmpty()) throw new NoSuchElementException();
 
-            return null;
-        }
-        else
-        {
             this.front = (this.front+1)%this.storage.length;
             E removed = this.storage[this.front];
             this.storage[this.front] = null; // for activating garbage collecting
             this.size--;
 
             if(resizeable()) resize();
-            this.debugStatus();
-
             return removed;
-        }
 
 
 
@@ -62,9 +52,6 @@ public class ArrayQueue<E> implements Queue<E> {
         else if(this.size>0 && this.size == this.storage.length/4) {
             newSize = this.storage.length/2;
         }
-
-        debugPrint("this.storage.length: " + this.storage.length);
-        debugPrint("newSize: " + newSize+"\n");
 
         E[] newStorage = (E[])new Object[newSize];
         for(int i=1,j=this.front+1; i<this.size+1; i++, j++){
@@ -86,56 +73,18 @@ public class ArrayQueue<E> implements Queue<E> {
     }
 
     public boolean resizeable(){
-
-        debugPrint("> resizeable: " + Boolean.toString(isFull() || this.size>0 && this.size == this.storage.length/4) );
         return isFull() || this.size>0 && this.size == this.storage.length/4;
     }
 
     public void print() {
-//        for (int i = this.front+1; i < this.size+1; i++) {
-//            System.out.print("i: " + i + "/ ");
-//            System.out.print("[" + this.storage[i % this.storage.length] + "] ");
-//        }
-//        System.out.println("");
 
         for(int i=0; i <this.storage.length; i++){
             System.out.print(this.storage[i % this.storage.length] + " ");
         }
-        System.out.println("");
+        System.out.println();
 
     }
 
-    public void debugPrint(String msg){
-        if (DEBUG_MODE){
-            System.out.println(msg);
-        }
-    }
-    public void debugStorage(){
-        if (DEBUG_MODE) {
-            System.out.print("INFO: ");
-            for (int i = this.front + 1; i < this.size + 1; i++) {
-                System.out.print("[" + this.storage[i % this.storage.length] + "] ");
-            }
-            System.out.println("");
-
-        }
-    }
-
-    public void debugStatus(){
-        if (!DEBUG_MODE) return ;
-        System.out.println("------- STATUS -------");
-        System.out.println("::: * front -> [" + this.front +"]");
-        System.out.println("::: * rear -> [" + this.rear +"]");
-        System.out.println("::: storage.legnth: " + this.storage.length);
-        System.out.print("::: storage: ");
-        for (int i=0; i<this.storage.length; i++){
-            if (storage[i] == null)  System.out.print("[" + i + "] \uD835\uDF19. ");
-
-            else
-            System.out.print("[" + i + "] "+ storage[i] + ". ");
-        }
-        System.out.println("\n");
-    }
     public E[] getStorage() {
         return storage;
     }
