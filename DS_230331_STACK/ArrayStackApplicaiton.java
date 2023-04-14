@@ -9,7 +9,9 @@ public class ArrayStackApplicaiton {
         s.pop();
         s.peek();
         s.push("C");
-
+        s.pop();
+        s.pop();
+        s.push("A");
         s.print();
     }
 
