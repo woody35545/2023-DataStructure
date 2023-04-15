@@ -60,6 +60,17 @@ public class SinglyLinkedList<E> implements List<E>{
         this.size++;
     }
 
+    @Override
+    public void insertLast(E newItem) {
+        Node p = this.head;
+        while(p.getNext() != null) {
+            p = p.getNext();
+        }
+        p.setNext(new Node(newItem, null));
+        this.size ++;
+
+    }
+
     /* for test */
     public E searchLast(){
         Node<E> p = this.head;
@@ -86,17 +97,19 @@ public class SinglyLinkedList<E> implements List<E>{
 
         Node p = this.head;
 
-        while(p.getNext().getNext() != target){
-//            if(p.getNext().getNext() != null && p.getNext().getNext().equals(target))
-//            {
-//                break;
-//            }
+        // 이러면 못찾았을 때 무한루프 도는데.
+//        while(p.getNext().getNext() != target){
+//            p = p.getNext();
+//        }
+
+        while(true){
+            if(p.getNext() == null) throw new NoSuchElementException(); // if target not found
+            if(p.getNext().getNext() == target) break; // if target found
             p = p.getNext();
-
         }
-
+        System.out.println(p.getItem());
+        p.getNext().setNext(null);
         p.setNext(target);
-        target.setNext(null);
         size --;
 
     }

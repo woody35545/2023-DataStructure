@@ -13,13 +13,16 @@ public interface List<E> {
     /* 리스트의 특정 노드 뒤에 새로운 노드를 추가한다. */
     void insertAfter(E newItem, Node target);
 
+    /* 리스트의 맨 뒤의 노드를 삭제한다. */
+    void insertLast(E newItem);
+
     /* 리스트의 맨 앞 노드를 삭제한다. */
     void deleteFront();
 
     void deleteBefore(Node target);
     void deleteAfter(Node target);
 
-    /* 리스트에서 가장 마지막 부분(head의 반대방향)을 삭제한다. */
+    /* 리스트에서 맨 뒤의 노드를 삭제한다. */
     void deleteLast();
 
 
