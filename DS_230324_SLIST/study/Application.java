@@ -7,6 +7,7 @@ public class Application {
 
         list.insertFront("A");
         list.insertFront("B");
+        list.deleteFront(); list.deleteFront();
         list.insertFront("C");
         list.print();
         list.insertLast("D");

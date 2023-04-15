@@ -90,17 +90,14 @@ public class SinglyLinkedList<E> implements List<E>{
 
     }
 
+    // Test done
     @Override
     public void deleteBefore(Node target) {
-
+        // 노드가 두개밖에 없을때는 문제해당 로직이 문제가 있다
+        // 노드가 1개 이하이면 이전걸 삭제할 수가 없다.
         if(this.size == 0) throw new NoSuchElementException();
 
         Node p = this.head;
-
-        // 이러면 못찾았을 때 무한루프 도는데.
-//        while(p.getNext().getNext() != target){
-//            p = p.getNext();
-//        }
 
         while(true){
             if(p.getNext() == null) throw new NoSuchElementException(); // if target not found
