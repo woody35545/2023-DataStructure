@@ -6,7 +6,7 @@ public class CList<E> {
     private Node last; // 리스트의 마지막 노드를 가리킨다.
     private int size; // 리스트의 노드 수
 
-    public CList(Node last) { // 리스트 생성자
+    public CList() { // 리스트 생성자
         last = null;
         size = 0;
     }
@@ -42,4 +42,33 @@ public class CList<E> {
         return last == null;
     }
 
+    public int getSize(){
+        return this.size;
+    }
+
+    /* optional, for test */
+    public void print(){
+        Node<E> currentNode= this.last.getNext();
+        for(int i=0; i<this.size; i++){
+            System.out.print(currentNode.getItem());
+            if(i < this.size-1) System.out.print(" -> ");
+            currentNode = currentNode.getNext();
+        }
+        System.out.println("");
+    }
+}
+class CListApplication{
+        public static void main(String[] args) {
+
+            CList<String> s = new CList<String>();
+            s.insert("pear");   s.insert("cherry");
+            s.insert("orange");   s.insert("apple");
+            s.print();
+            System.out.println(": s의 길이= " +s.getSize()+"\n");
+
+            s.delete();
+            s.print();
+            System.out.println(": s의 길이= " +s.getSize()+"\n");
+
+        }
 }

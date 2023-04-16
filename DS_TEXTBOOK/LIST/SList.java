@@ -79,7 +79,6 @@ public class SList<E> {
         }
     }
 }
-
 class SListApplication{
     public static void main(String[] args){
         SList<String> s= new SList<>();

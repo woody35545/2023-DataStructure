@@ -1,6 +1,5 @@
 package DS_TEXTBOOK.LIST;
-
-class Node<E> {
+public class Node<E> {
     private E item;
     private Node<E> next;
 
