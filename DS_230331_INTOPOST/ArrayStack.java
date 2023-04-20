@@ -1,79 +1,55 @@
 package DS_230331_INTOPOST;
 
-import DS_230331_STACK.SUBMIT.Stack;
-
 import java.util.EmptyStackException;
 public class ArrayStack<E> implements Stack<E> {
-    private E[] storage;
+    private E[] arr;
     private int top;
 
     public ArrayStack() {
-        this.storage = (E[])new Object[1];
+        this.arr = (E[])new Object[1];
         this.top = -1;
     }
 
     @Override
     public void push(E element) {
-        if (resizeable()) resize();
-        this.top++;
-
-        this.storage[this.top] = element;
+        if (top+1 == this.arr.length) resize(arr.length*2);
+        this.arr[++top] = element;
     }
 
     @Override
     public E pop() {
-        if (isEmpty()) throw new EmptyStackException();
-
-            E popped = this.storage[this.top];
+        if (top==-1) throw new EmptyStackException();
+            E popped = this.arr[this.top];
+            arr[top] = null;
             this.top--;
             return popped;
         }
 
     @Override
     public E peek() {
-        if (isEmpty()) throw new EmptyStackException();
+        if (top==-1) throw new EmptyStackException();
 
-
-        return this.storage[this.top];
-    }
-    public boolean isEmpty(){
-        return this.size()==0;
+        return this.arr[top];
     }
 
-    public boolean resizeable(){
-        return (this.size() == this.capacity()) || (this.size() > 0 && this.size()==this.storage.length/4);
-    }
-
-    public void resize(){
-        int newSize = this.size();
-
-        if(this.size() > 0 && (this.size() == this.storage.length/4))  newSize = this.storage.length/2;
-        else if(this.size() == this.capacity()) newSize = this.storage.length*2;
-
-        E[] resizedStorage =(E[])new Object[newSize];
-
-        for(int i=0; i<this.size(); i++)
-            resizedStorage[i] = this.storage[i];
-
-        this.storage = resizedStorage;
-    }
-
-    public int size(){
-        return this.top+1;
-    }
-    public int capacity(){
-        return this.storage.length;
-    }
-    public int getTop(){
-        return this.top;
-
-    }
-    public void print(){
-        for (int i=0; i<this.size(); i++){
-
-            System.out.print(this.storage[i] + " ");
-
+    public void resize(int newCapacity){
+        E[] newArr = (E[]) new Object[newCapacity];
+        for(int i=0; i<top+1; i++){
+            newArr[i] = this.arr[i];
         }
-        //System.out.println("");
+        this.arr = newArr;
+    }
+
+    public int getTop(){
+        return this.top;}
+    public boolean isEmpty(){
+        return top == -1;
+    }
+
+    public void print(){
+        for (int i=0; i<top+1; i++){
+            System.out.print("["+ i + "]"+ this.arr[i] + " ");
+        }
+        System.out.println("");
     }
 }
