@@ -17,11 +17,5 @@ public class BSTApplication {
         t.print(t.root); System.out.println("");
         t.delete(600);
         t.print(t.root); System.out.println("");
-
-
-
-
-
-
     }
 }
