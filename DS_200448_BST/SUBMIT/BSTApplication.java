@@ -1,4 +1,4 @@
-package DS_200448_BST;
+package DS_200448_BST.SUBMIT;
 
 public class BSTApplication {
     public static void main(String args[]){

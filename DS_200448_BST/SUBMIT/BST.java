@@ -1,6 +1,7 @@
-package DS_200448_BST;
+package DS_200448_BST.SUBMIT;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 public class BST <Key extends  Comparable<Key>, Value>{
     public Node root;
     public Node getRoot() {return this.root;}
