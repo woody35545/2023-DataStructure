@@ -11,20 +11,19 @@ public class Node <Key extends Comparable<Key>, Value>{
         name = newName;
         left = right = null;
     }
-
-    public Key getId() {
+    public Key getKey(){
         return id;
     }
 
-    public void setId(Key id) {
+    public void setKey(Key id) {
         this.id = id;
     }
 
-    public Value getName() {
+    public Value getValue() {
         return name;
     }
 
-    public void setName(Value name) {
+    public void setValue(Value name) {
         this.name = name;
     }
 
