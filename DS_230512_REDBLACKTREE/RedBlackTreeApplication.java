@@ -14,7 +14,7 @@ public class RedBlackTreeApplication {
         rbt.put(450, "pear");
         rbt.put(350, "lime");
 
-        rbt.print();
+        rbt.print(rbt.root);
 
         System.out.print("\n----------------------------------");
 
