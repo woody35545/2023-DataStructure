@@ -6,43 +6,41 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     public void put(Key k, Value v) {
         root = put(root,k,v);}
 
-    private Node put(Node<Key,Value> n, Key k, Value v){
-        // parameter에 generic 부분 확인 필요
-        if(n==null) return new Node(k, v, 1);
-        int t = k.compareTo(n.id);
-        if(t<0) n.left = put(n.left, k ,v );
-        else if (t>0) n.right = put(n.right, k,v);
+    private Node put(Node<Key,Value> node, Key k, Value v){
+        if(node==null) return new Node(k, v, 1);
+        int t = k.compareTo(node.id);
+        if(t<0) node.left = put(node.left, k ,v );
+        else if (t>0) node.right = put(node.right, k,v);
         else{
-            n.name = v;
-            return n;
+            node.name = v;
+            return node;
         }
-        n.height = tallerHeight(height(n.left), height(n.right)) +1;
-        return balance(n);
+        node.height = tallerHeight(height(node.left), height(node.right)) +1;
+        return balance(node);
     }
 
-    private Node balance(Node n){
-        if(bf(n)>1){
-            if(bf(n.left)<0){
-                n.left = rotateLeft(n.left);
-            }
-            n = rotateRight(n); // LL Rotation
+    private Node balance(Node node){
+        if(bf(node)>1){ // left's height > right's height + 1 인 경우
+            /* LL: rotateRight, LR: rotateLeft, rotateRight */
+            if(bf(node.left)<0){ node.left = rotateLeft(node.left); }// LR 인 경우에만 수행
+            node = rotateRight(node);
         }
-        else if(bf(n) < -1){
-            if(bf(n.right)>0){
-                n.right = rotateRight(n.right);
-            }
-            n = rotateLeft(n);// RR Rotation
+        else if(bf(node) < -1){ // right's height > left's height + 1 인 경우
+            /* RR: rotateLeft, RL: rotateRight, rotateLeft */
+            if(bf(node.right)>0){ node.right = rotateRight(node.right);} // RL인 경우에만 수행
+            node = rotateLeft(node);
         }
-        return n;
+        return node;
     }
 
-    private int bf(Node n){
-        return height(n.left) - height(n.right);
+    private int bf(Node node){
+        // balance factor
+        return height(node.left) - height(node.right);
     }
 
-    private int height(Node n){
-        if(n==null) return 0;
-        return n.height;
+    private int height(Node node){
+        if(node==null) return 0;
+        return node.height;
     }
 
     private int tallerHeight(int x, int y){
@@ -50,21 +48,55 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
         else return y;
     }
 
-    private Node rotateLeft(Node n){
-        Node x = n.right;
-        n.right = x.left;
-        x.left = n;
-        n.height = tallerHeight(height(n.left), height(n.right))+1;
-        x.height = tallerHeight(height(x.left), height(x.right)) +1;
-        return x;
+    private Node rotateLeft(Node node){
+        Node t = node.right;
+        node.right = t.left;
+        t.left = node;
+        node.height = tallerHeight(height(node.left), height(node.right))+1;
+        t.height = tallerHeight(height(t.left), height(t.right)) +1;
+        return t;
     }
 
-    private Node rotateRight(Node n){
-        Node x = n.left;
-        n.left = x.right;
-        x.right= n;
-        n.height = tallerHeight(height(n.left), height(n.right))+1;
-        x.height = tallerHeight(height(x.left), height(x.right))+1 ;
-        return x;
+    private Node rotateRight(Node node){
+        Node t = node.left;
+        node.left = t.right;
+        t.right= node;
+        node.height = tallerHeight(height(node.left), height(node.right))+1;
+        t.height = tallerHeight(height(t.left), height(t.right))+1 ;
+        return t;
+    }
+
+
+    // for print
+    public void print(){
+        System.out.printf("\n전위 순회:  ");
+        this.preorder(this.root);
+        System.out.printf("\n중위 순회:  ");
+        this.inorder(this.root);
+        System.out.printf("\n후위 순회:  ");
+        this.postorder(this.root);
+    }
+    public void preorder(Node node) {
+        if (node != null) {
+            System.out.print(node.id+ " ");
+            this.preorder(node.left);
+            this.preorder(node.right);
+        }
+    }
+
+    public void inorder(Node node){
+        if (node!=null){
+            this. inorder(node.left);
+            System.out.print(node.id+ " ");
+            this.inorder(node.right);
+        }
+    }
+
+    public void postorder(Node node){
+        if(node != null){
+            this.postorder(node.left);
+            this.postorder(node.right);
+            System.out.print(node.id + " ");
+        }
     }
 }

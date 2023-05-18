@@ -8,7 +8,7 @@ public class Node<Key extends Comparable<Key>,Value> {
     public Node(Key k, Value v, boolean color){
         id = k;
         name = v;
-        color = color;
+        this.color = color;
         left = right = null;
     }
 }

@@ -20,7 +20,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
     private Node rotateLeft(Node n){
         Node x = n.right;
-        x.right = x.left;
+        n.right = x.left;
         x.left = n;
         x.color = n.color;
         n.color = RED;
@@ -62,7 +62,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 
     // for print
-    public void print(Node n){
+    public void print(){
         System.out.printf("\n전위 순회:  ");
         this.preorder(this.root);
         System.out.printf("\n중위 순회:  ");
