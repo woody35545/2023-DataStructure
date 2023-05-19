@@ -13,7 +13,9 @@ public class AVLTreeApplication {
         st.put(40,"Watermelon");
         st.put(70,"Melon");
         st.put(90,"fruit");
-        st.print(st.root);
+      
+        st.print();
+      
         System.out.println("\n\n");
 
 
