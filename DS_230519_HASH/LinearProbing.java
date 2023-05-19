@@ -1,15 +1,15 @@
 package DS_230519_HASH;
 
 public class LinearProbing<K,V> {
-    private int M = 13; // table size
-    private K[] a = (K[]) new Object[M]; // hash table
-    private V[] d = (V[]) new Object[M]; // key data
+    protected int M = 13; // table size
+    protected K[] a = (K[]) new Object[M]; // hash table
+    protected V[] d = (V[]) new Object[M]; // key data
 
     private int hash(K key){
         return(key.hashCode()&0x7fffffff) % M;
     }
 
-    private void put(K key, V data){
+    public void put(K key, V data){
         int initialpos = hash(key);
         int i = initialpos;
         int j = 1;
