@@ -12,7 +12,6 @@ public class HashApplicaion {
         System.out.println("탐색 결과:");
         System.out.println("50의 data = "+t.get(50));
         System.out.println("63의 data = "+t.get(63));
-
         System.out.println();
 
         System.out.println("해시 테이블:");
