@@ -99,4 +99,36 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
             System.out.print(node.id + " ");
         }
     }
+    // for print
+    public void print(Node n){
+        System.out.printf("\n전위 순회:  ");
+        this.preorder(this.root);
+        System.out.printf("\n중위 순회:  ");
+        this.inorder(this.root);
+        System.out.printf("\n후위 순회:  ");
+        this.postorder(this.root);
+    }
+    public void preorder(Node node) {
+        if (node != null) {
+            System.out.print(node.getId() + " ");
+            this.preorder(node.getLeft());
+            this.preorder(node.getRight());
+        }
+    }
+
+    public void inorder(Node node){
+        if (node!=null){
+            this. inorder(node.getLeft());
+            System.out.print(node.getId() + " ");
+            this.inorder(node.getRight());
+        }
+    }
+
+    public void postorder(Node node){
+        if(node != null){
+            this.postorder(node.getLeft());
+            this.postorder(node.getRight());
+            System.out.print(node.getId() + " ");
+        }
+    }
 }

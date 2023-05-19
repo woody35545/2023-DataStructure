@@ -11,4 +11,24 @@ public class Node<Key, Value> {
         height = newHeight;
         left=right=null;
     }
+
+    public Key getId() {
+        return id;
+    }
+
+    public Value getName() {
+        return name;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
 }
