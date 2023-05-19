@@ -1,9 +1,9 @@
 package DS_230519_HASH;
 
-public class HashApplicaion {
+public class DoubleHashingApplication {
     public static void main(String[] args){
 
-        LinearProbing t = new LinearProbing();
+        DoubleHashing t = new DoubleHashing();
 
         //25, 37, 18, 55, 22, 35, 50, 63을 차례로 해시 테이블에 저장
         t.put(25, "grape"); t.put(37, "apple");	t.put(18, "bananna");

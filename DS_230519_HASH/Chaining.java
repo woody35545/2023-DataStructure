@@ -5,9 +5,9 @@ public class Chaining<K,V> {
     protected Node[] a = new Node[M];
 
     public static class Node {
-        private Object key;
-        private Object data;
-        private Node next;
+        protected Object key;
+        protected Object data;
+        protected Node next;
 
         public Node(Object key, Object data, Node next) {
             this.key = key;

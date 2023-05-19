@@ -13,14 +13,14 @@ public class DoubleHashing<K,V> {
         int i = initialpos, loop_limit = 20, j=1, d= (7-(int)key%7);
         do {
             if(a[i] == null) {
-                a[i]=key; dt[i] = data; N ++;
+                a[i]=key; dt[i] = data; N++;
                 return ;
             }
             if(a[i].equals(key)){
                 dt[i] = data;
                 return ;
             }
-            i = (initialpos + j*d)&M;
+            i = (initialpos + j*d)%M;
             j++;
             loop_limit -= 1;
         }while( loop_limit > 0);
