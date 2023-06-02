@@ -15,9 +15,9 @@ public class LinearProbingApplication {
         System.out.println();
 
         System.out.println("해시 테이블:");
-        for(int i=0;i<t.M;++i) System.out.printf("\t%2d",i);
+        for(int i=0;i<t.M;++i) System.out.printf("  \t%2d",i);
         System.out.println();
-        for(int i=0;i<t.M;++i) System.out.print("\t"+t.a[i]);
+        for(int i=0;i<t.M;++i) System.out.print("  \t"+t.a[i]);
         System.out.println();
 
     }

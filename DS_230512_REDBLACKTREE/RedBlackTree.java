@@ -5,61 +5,90 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     private static final boolean BLACK = false;
     public Node root;
     private boolean isEmpty(){return root == null;}
-    private boolean isRed(Node n) {
-        if (n == null) return false;
-        return (n.color == RED);
+    private boolean isRed(Node node) {
+        if (node == null) return false;
+        return (node.color == RED);
     }
-    private Value get(Key k){return get(root,k);}
-    private Value get(Node n, Key k){
-        if(n==null) return null;
-        int t = n.id.compareTo(k);
-        if(t>0) return get(n.left, k);
-        else if(t<0) return get(n.right, k);
-        else return (Value)n.name;
-    }
-
-    private Node rotateLeft(Node n){
-        Node x = n.right;
-        n.right = x.left;
-        x.left = n;
-        x.color = n.color;
-        n.color = RED;
-        return x;
+    private Value get(Key key){return get(root,key);}
+    private Value get(Node node, Key key){
+        if(node==null) return null;
+        int t = node.id.compareTo(key);
+        if(t>0) return get(node.left, key);
+        else if(t<0) return get(node.right, key);
+        else return (Value)node.name;
     }
 
-    private Node rotateRight(Node n){
-        Node x = n.left;
-        n.left = x.right;
-        x.right = n;
-        x.color = n.color;
-        n.color = RED;
-        return x;
+    private Node rotateLeft(Node node){
+        Node t = node.right;
+        node.right = t.left;
+        t.left = node;
+        t.color = node.color;
+        node.color = RED;
+        return t;
     }
 
-    private void flipColors(Node n){
-        n.color = !n.color;
-        n.left.color = !n.left.color;
-        n.right.color = !n.right.color;
+    private Node rotateRight(Node node){
+        Node t = node.left;
+        node.left = t.right;
+        t.right = node;
+        t.color = node.color;
+        node.color = RED;
+        return t;
     }
 
-    public void put(Key k, Value v){
-        root = put(root,k,v);
+    private void flipColors(Node node){
+        node.color = !node.color;
+        node.left.color = !node.left.color;
+        node.right.color = !node.right.color;
+    }
+
+    public void put(Key key, Value value){
+        root = put(root,key,value);
         root.color = BLACK;
     }
 
-    private Node put(Node n, Key k, Value v){
-        if(n==null) return new Node(k,v,RED);
-        int t = k.compareTo((Key)n.id);
-        if(t<0) n.left = put(n.left,k,v);
-        else if(t>0) n.right = put(n.right, k,v);
-        else n.name = v;
+    private Node put(Node node, Key key, Value value){
+        if(node==null) return new Node(key,value,RED);
+        int t = key.compareTo((Key)node.id);
+        if(t<0) node.left = put(node.left,key,value);
+        else if(t>0) node.right = put(node.right, key,value);
+        else node.name = value;
 
-        if(!isRed(n.left) && isRed(n.right)) n = rotateLeft(n);
-        if(isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
-        if(isRed(n.left) && isRed(n.right)) flipColors(n);
-        return n;
+        if(!isRed(node.left) && isRed(node.right)) node = rotateLeft(node);
+        if(isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
+        if(isRed(node.left) && isRed(node.right)) flipColors(node);
+        return node;
     }
 
+    private Node moveRedLeft(Node node){
+        flipColors(node);
+        if(isRed(node.right.left)){
+            node.right = rotateRight(node.right);
+            node = rotateLeft(node);
+            flipColors(node);
+        }
+        return node;
+    }
+
+    public void deleteMin(){
+        root = deleteMin(root);
+        root.color = BLACK;
+    }
+
+    private Node deleteMin(Node node){
+        if(node.left == null) return null;
+        if(!isRed(node.left)&& !isRed(node.left.left))
+            node = moveRedLeft(node);
+        node.left = deleteMin(node.left);
+        return fixUp(node);
+    }
+
+    private Node fixUp(Node node){
+        if(isRed(node.right)) node = rotateLeft(node);
+        if(isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
+        if(isRed(node.left) && isRed(node.right)) flipColors(node);
+        return node;
+    }
 
     // for print
     public void print(){
